@@ -50,11 +50,20 @@ public class CategoriasController {
 	
 	@PutMapping
 	public ResponseEntity<Categorias> PUTCategorias (@RequestBody Categorias categorias){
-		return ResponseEntity.status(HttpStatus.OK).body(categoriasRepository.save(categorias));
+		
+		return categoriasRepository.findById(categorias.getId())
+				.map(respostas -> ResponseEntity.ok().body(categoriasRepository.save(categorias)))
+				.orElse(ResponseEntity.notFound().build());
 	}
-	
+		
 	@DeleteMapping("/{id}")
-	public void delete(@PathVariable long id) {
-		categoriasRepository.deleteById(id);
+	public ResponseEntity<?> deleteCategorias(@PathVariable Long id) {
+		
+		return categoriasRepository.findById(id)
+			.map(respostas -> {
+			categoriasRepository.deleteById(id);
+			return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+		})
+		.orElse(ResponseEntity.notFound().build());
 	}
 }
