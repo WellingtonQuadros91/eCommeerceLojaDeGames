@@ -1,0 +1,5 @@
+package com.generation.LojaDeGames.security;
+
+public class UserDetailsServiceImpl {
+
+}

@@ -1,0 +1,5 @@
+package com.generation.LojaDeGames.repository;
+
+public interface UsuarioRepository {
+
+}
