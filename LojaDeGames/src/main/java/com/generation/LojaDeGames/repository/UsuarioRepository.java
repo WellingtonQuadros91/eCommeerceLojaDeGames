@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.generation.LojaDeGames.model.Usuario;
 
 @Repository
-interface UsuarioRepository extends JpaRepository<Usuario, Long>{
+public interface UsuarioRepository extends JpaRepository<Usuario, Long>{
 	
 	public Optional<Usuario> findByUsuario(String usuario);
 	
